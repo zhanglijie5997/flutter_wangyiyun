@@ -68,7 +68,8 @@ class _RouterState extends State<Router> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+        backgroundColor: Color.fromRGBO(34, 35, 36, 1),
+        resizeToAvoidBottomPadding: false,
         body: IndexedStack(
           index: _currentIndex,
           children: _routes,

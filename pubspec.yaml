@@ -83,6 +83,9 @@ flutter:
    - images/security.png # 青少年模式
    - images/microphone.png # 麦克风
    - images/seach.png #搜索
+   - images/triangle.png #右三角
+   - images/equalizer.png #均衡器
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

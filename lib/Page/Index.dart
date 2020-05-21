@@ -7,7 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:wangyiyun/Components/Listen.dart';
 import 'package:wangyiyun/Components/Swiper.dart';
+import 'package:wangyiyun/Components/Title.dart';
 import 'package:wangyiyun/Components/Toast.dart';
+import 'package:wangyiyun/Mobx/Counter.dart';
 import 'package:wangyiyun/Mobx/IndexState.dart';
 import 'package:wangyiyun/Utils/Fluro/Fluro.dart';
 import 'package:wangyiyun/Utils/HttpList/IndexHttp.dart';
@@ -37,9 +39,7 @@ class _IndexState extends State<Index> {
 
   List<dynamic> _personalizedNewSong = []; // 推荐歌单
 
-  TextEditingController _textController;
-
-  String _textVal = ''; // text 输入文字
+ 
 
   void showLongToast() {
     Toast().showText("测试");
@@ -274,128 +274,72 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromRGBO(34, 35, 36, 1),
-        body: Consumer<IndexState>(
+    return Consumer<CounterState>(
           builder: (BuildContext context, state, child) {
-            return SingleChildScrollView(
-              // key: UniqueKey(),
-              controller: _controller,
-              scrollDirection: Axis.vertical,
-              reverse: false,
-              padding: EdgeInsets.only(top: 50),
-              physics: BouncingScrollPhysics(),
-              child: Column(
+            return ConstrainedBox(
+              constraints: BoxConstraints.expand(),
+              child: Stack(
                 children: <Widget>[
                   Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          child: Image.asset("images/microphone.png", width: 25, height: 25,),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            width: 250,
-                            height: 40,
-                            margin: EdgeInsets.only(left: 10),
-                            padding: EdgeInsets.only(left: 20),
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(44, 45, 46, 1),
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                            child: Flex(direction: Axis.horizontal, children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(top: 3, right: 10),
-                                child: Image.asset('images/seach.png', width: 20,height: 20,),
-                              ),
-                              Container(
-                                // color: Colors.red,
-                                alignment: Alignment.center,
-                                width: 200,
-                                height: 40,
-                                child: CupertinoTextField(
-                                  keyboardAppearance: Brightness.dark,
-                                  placeholder: '请输入文字',
-                                  placeholderStyle: TextStyle(
-                                    color: Color.fromRGBO(153, 153, 153, 1)
-                                  ),
-                                  maxLines: 1,
-                                  onChanged: (String _text) {
-                                    this.setState(() {
-                                      _textVal = _text;
-                                    });
-                                  },
-                                  controller: _textController,
-                                  cursorWidth: 2,
-                                  cursorColor: Colors.red,
-                                  // textAlign: TextAlign.center,
-                                  textAlignVertical: TextAlignVertical.center,
-                                  style: TextStyle(
-                                    
-                                    fontSize: 18,
-                                    color: Colors.white
-                                  ),
-                                  decoration: BoxDecoration(
-                                    // contentPadding: EdgeInsets.only(bottom: 14),
-                                    // border: InputBorder.none,
-                                  ),
-                                  inputFormatters: <TextInputFormatter>[
-                                    // LengthLimitingTextInputFormatter(12)
-                                  ],
-                                ),
-                              )
-                              
-                            ]
-                          ) 
-                        )
+                    margin: EdgeInsets.only(top: 50),
+                    child: SingleChildScrollView(
+                      // key: UniqueKey(),
+                      controller: _controller,
+                      scrollDirection: Axis.vertical,
+                      reverse: false,
+                      padding: EdgeInsets.only(top: 50),
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: <Widget>[
+                        
+                          // 轮播
+                          Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child: this._list.length > 0
+                                  ? SwiperCom(list: this._list)
+                                  : null),
+                          // 横向列表
+                          Container(
+                            
+                            child: horCom()
+                          ),
+                          // 人气歌单
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              margin: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width * 0.02,
+                                  top: 10),
+                              child: purple("人气歌单推荐", false, this._purpleList)),
+                          // 温柔岁月的华语情怀
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              margin: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width * 0.02,
+                                  top: 10),
+                              child: purple("温柔岁月的华语情怀 ", true, this._purpleList)),
+                          FlatButton(
+                              onPressed: () {
+                                print('object---');
+                              },
+                              child: Icon(Icons.arrow_downward))
+                        ],
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: Listen(),
-                      )
-                      ],
-                    ),
+                    )
                   ),
-                  // 轮播
-                  Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: this._list.length > 0
-                          ? SwiperCom(list: this._list)
-                          : null),
-                  // 横向列表
-                  Container(
-                    
-                    child: horCom()
-                  ),
-                  // 人气歌单
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.02,
-                          top: 10),
-                      child: purple("人气歌单推荐", false, this._purpleList)),
-                  // 温柔岁月的华语情怀
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.02,
-                          top: 10),
-                      child: purple("温柔岁月的华语情怀 ", true, this._purpleList)),
-                  FlatButton(
-                      onPressed: () {
-                        print('object---');
-                      },
-                      child: Icon(Icons.arrow_downward))
+
+                  Positioned(
+                    top: 50,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width ,
+                      // padding: EdgeInsets.only(left:  MediaQuery.of(context).size.width * 0.03, right:  MediaQuery.of(context).size.width * 0.03),
+                      color: state.color,
+                      child:Nav(),
+                    ) ,
+                  )
                 ],
               ),
             );
           },
-          // child:
-        ));
+        );
   }
 }

@@ -120,7 +120,7 @@ class _SettingState extends State<Setting> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Container(
-                        width: 60,
+                        width: 70,
                         height: 24,
                         child: Center(
                           child: Text("立即开通", style: TextStyle(
@@ -421,35 +421,48 @@ class _SettingState extends State<Setting> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Consumer<CounterState>(builder: (context, state, child) {
-      return Scaffold(
-          backgroundColor: Colors.black,
-          body: Container(
-            // width: MediaQuery.of(context).size.width * 0.95,
-            // margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.025),
-            child: SingleChildScrollView(
-              primary: true,
-              scrollDirection: Axis.vertical,
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.only(top: 50),
-              child: Container(
-                padding: EdgeInsets.only(bottom: 10),
-                child: Column(
-                  children: <Widget>[
-                    // 头部扫一扫
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.93,
-                      child: title() ,
-                    ),
-                    body(),
-                    user(state.color),
-                    creator(state.color),
-                    musicService(state.color, this._musicList),
-                    musicService(state.color, this._tool)
-                  ],
-                ),
-              ) ,
-            )
-        )
+      return ConstrainedBox(
+          constraints: BoxConstraints.expand(),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 50),
+                  // width: MediaQuery.of(context).size.width * 0.95,
+                  // margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.025),
+                  child: SingleChildScrollView(
+                    primary: true,
+                    scrollDirection: Axis.vertical,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.only(top: 20),
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Column(
+                        children: <Widget>[
+                          
+                          body(),
+                          user(state.color),
+                          creator(state.color),
+                          musicService(state.color, this._musicList),
+                          musicService(state.color, this._tool)
+                        ],
+                      ),
+                    ) ,
+                  )
+              ),
+              Positioned(
+                // 头部扫一扫
+                child: Container(
+                  color: state.color,
+                  width: MediaQuery.of(context).size.width ,
+                  margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02, top: 50),
+                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03, right: MediaQuery.of(context).size.width * 0.03),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.96,
+                    child: title(),
+                  )  ,
+                ),)
+            ],
+          )  
       );
     });
   }
