@@ -353,37 +353,43 @@ class _SettingState extends State<Setting> with SingleTickerProviderStateMixin {
   }
 
   Widget publicList(String _image, String _name) {
-    return Container(
-      padding: EdgeInsets.only(left: 15),
-      child: Flex(direction: Axis.horizontal, children: <Widget>[
-        Image.asset(_image, width: 20, height: 20,),
-        Expanded(
-          flex: 1,
-          child: Container(
-            margin: EdgeInsets.only(left: 10),
-            width: MediaQuery.of(context).size.width * 0.8,
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(
-                color: Color.fromRGBO(41, 41, 41, 1),
-                width: 1 
-              ))
-            ),
-            child: Container(
-              height: 45,
-              child: Flex(direction: Axis.horizontal, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-                Text(_name, style: TextStyle(
-                  color: Colors.white
-                )),
-                Container(
-                  padding: EdgeInsets.only(right: 15),
-                  child: Image.asset("images/right.png", width: 16, height: 16),
-                )
-              ]),
-            ) 
-          )
-        )
-      ]),
-    );
+    return GestureDetector(
+      onTap: () {
+        Toast().showText("功能暂未开通");
+      },
+      child:  Container(
+        padding: EdgeInsets.only(left: 15),
+          child: Flex(direction: Axis.horizontal, children: <Widget>[
+            Image.asset(_image, width: 20, height: 20,),
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: EdgeInsets.only(left: 10),
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(
+                    color: Color.fromRGBO(41, 41, 41, 1),
+                    width: 1 
+                  ))
+                ),
+                child: Container(
+                  height: 45,
+                  child: Flex(direction: Axis.horizontal, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                    Text(_name, style: TextStyle(
+                      color: Colors.white
+                    )),
+                    Container(
+                      padding: EdgeInsets.only(right: 15),
+                      child: Image.asset("images/right.png", width: 16, height: 16),
+                    )
+                  ]),
+                ) 
+              )
+            )
+          ]
+        ),
+      )
+    ); 
   }
 
   // 音乐服务

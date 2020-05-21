@@ -26,6 +26,12 @@ class _RankState extends State<Rank> with SingleTickerProviderStateMixin{
               children: <Widget>[
                 Text("data"),
                 Text("data"),
+                FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("返回"),
+                )
               ],
             ),
           ),

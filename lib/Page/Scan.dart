@@ -14,12 +14,17 @@ class _ScanState extends State<Scan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController controller;
   String qrText = '';
-  void _onQRViewCreated(QRViewController controller) {
+  void _onQRViewCreated(QRViewController controller) async{
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        qrText = scanData;
-      });
+      if(qrText.length == 0 ) {
+          print(scanData);
+          print("------");
+          setState(() {
+              qrText = scanData;
+               Navigator.pop(context,true);
+          });
+      }
     });
   }
 
@@ -33,7 +38,7 @@ class _ScanState extends State<Scan> {
 
   @override
   void dispose() {
-    controller.dispose();
+    this.controller.dispose();
     super.dispose();
   }
 
