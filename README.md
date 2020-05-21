@@ -1,16 +1,20 @@
 # wangyiyun
 
-A new Flutter project.
+Flutter wangyiyun 
 
-## Getting Started
+## instructions
 
-This project is a starting point for a Flutter application.
+use plugin
 
-A few resources to get you started if this is your first Flutter project:
+- [Plugin: flutter_swiper]()
+- [Plugin: shared_preferences]()
+- [Plugin: provider]()
+- [Plugin: bot_toast]()
+- [Plugin: dio]()
+- [Plugin: fluro]()
+- [Plugin: amap_location]()
+- [Plugin: qr_code_scanner]()
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+If you're in China
+[Flutter Plugin](https://pub.flutter-io.cn/packages),Maybe u need over the wall to install some plugins.
