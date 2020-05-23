@@ -34,7 +34,7 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin{
        child: Container(
          width: MediaQuery.of(context).size.width,
          height: MediaQuery.of(context).size.height,
-         child: Image.asset("images/index.jpeg"),
+         child: Image.asset("images/index.jpeg", fit: BoxFit.cover,),
        ),
     ),) ;
   }

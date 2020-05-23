@@ -43,6 +43,8 @@ dependencies:
   amap_location: ^0.2.0
   # 扫一扫
   qr_code_scanner: ^0.0.13
+  # 打开其他app
+  url_launcher: ^5.4.10
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -120,7 +120,7 @@ class _VideoState extends State<Video> with TickerProviderStateMixin{
               // color: Colors.red,
               width: MediaQuery.of(context).size.width * 0.95,
               margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.025),
-              padding: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(top: 130),
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 primary: true,

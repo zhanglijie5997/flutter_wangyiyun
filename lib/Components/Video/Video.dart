@@ -44,7 +44,7 @@ class _VideoItemState extends State<VideoItem> {
         child: Center(
           child: Text(this.widget.item["name"], style: TextStyle(
             color: Colors.white,
-            fontSize: this.widget.active ? 22:20,
+            fontSize: this.widget.active ? 22:16,
           ))
         ) ,
       ),
