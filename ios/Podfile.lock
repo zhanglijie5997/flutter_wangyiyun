@@ -6,6 +6,9 @@ PODS:
   - AMapLocation (2.6.4):
     - AMapFoundation (~> 1.6.1)
   - Flutter (1.0.0)
+  - fluwx (0.0.1):
+    - Flutter
+    - WechatOpenSDK (= 1.8.7.1)
   - MTBBarcodeScanner (5.0.11)
   - qr_code_scanner (0.0.2):
     - Flutter
@@ -22,10 +25,12 @@ PODS:
     - Flutter
   - url_launcher_web (0.0.1):
     - Flutter
+  - WechatOpenSDK (1.8.7.1)
 
 DEPENDENCIES:
   - amap_location (from `.symlinks/plugins/amap_location/ios`)
   - Flutter (from `Flutter`)
+  - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
@@ -39,12 +44,15 @@ SPEC REPOS:
     - AMapFoundation
     - AMapLocation
     - MTBBarcodeScanner
+    - WechatOpenSDK
 
 EXTERNAL SOURCES:
   amap_location:
     :path: ".symlinks/plugins/amap_location/ios"
   Flutter:
     :path: Flutter
+  fluwx:
+    :path: ".symlinks/plugins/fluwx/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   shared_preferences:
@@ -65,6 +73,7 @@ SPEC CHECKSUMS:
   AMapFoundation: df9a0ceec845ae2b5f57bdf9884666f2ed73bf5b
   AMapLocation: b4162db67f813508a14ee7e05c7ee4073785221d
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  fluwx: 07a55ed66bf3a4961e836a2a411b02dcada32902
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
@@ -73,6 +82,7 @@ SPEC CHECKSUMS:
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
   url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

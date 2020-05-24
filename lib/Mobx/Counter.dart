@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class CounterState with ChangeNotifier{
   int _counter = 3;
   Color _color = Color.fromRGBO(34, 35, 36, 1);
+  // Color _color = Colors.red;
   Map<String, double> _local = {
     "lng": 0.0,
     "lat": 0.0

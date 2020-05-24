@@ -45,6 +45,12 @@ dependencies:
   qr_code_scanner: ^0.0.13
   # 打开其他app
   url_launcher: ^5.4.10
+  # 打开微信
+  fluwx: ^2.1.0
+  # 支付宝支付
+  # flutter_alipay: ^1.0.0
+  # 上啦加载
+  pull_to_refresh: ^1.5.8
 dev_dependencies:
   flutter_test:
     sdk: flutter

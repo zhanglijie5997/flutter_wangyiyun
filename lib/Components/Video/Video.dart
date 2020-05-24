@@ -28,7 +28,7 @@ class _VideoItemState extends State<VideoItem> {
         var vector3 = renderObject.getTransformTo(null)?.getTranslation();
         RenderBox renderBox = this.globalKey.currentContext.findRenderObject();
         var offset =  renderBox.localToGlobal(Offset.zero);
-        print(offset.dx);
+        // print(offset.dx);
         // this.widget.changeScroll(vector3.x);
       },
       child: Container(
@@ -45,6 +45,7 @@ class _VideoItemState extends State<VideoItem> {
           child: Text(this.widget.item["name"], style: TextStyle(
             color: Colors.white,
             fontSize: this.widget.active ? 22:16,
+            // fontSize: 16
           ))
         ) ,
       ),

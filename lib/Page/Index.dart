@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wangyiyun/Components/Listen.dart';
+import 'package:wangyiyun/Components/Refresh.dart';
 import 'package:wangyiyun/Components/Swiper.dart';
 import 'package:wangyiyun/Components/Title.dart';
 import 'package:wangyiyun/Components/Toast.dart';
@@ -23,6 +25,8 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
   ScrollController _controller = ScrollController();
+
+  RefreshController _refreshController = RefreshController(initialRefresh: true, initialLoadStatus: LoadStatus.loading );
 
   List<dynamic> _list = [];
 
@@ -263,7 +267,7 @@ class _IndexState extends State<Index> {
   void deactivate() {
     // update(context);
     super.deactivate();
-    print(_controller.offset);
+    // print(_controller.offset);
   }
 
   @override
@@ -281,52 +285,50 @@ class _IndexState extends State<Index> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(top: 50),
-                    child: SingleChildScrollView(
-                      // key: UniqueKey(),
-                      controller: _controller,
-                      scrollDirection: Axis.vertical,
-                      reverse: false,
-                      padding: EdgeInsets.only(top: 50),
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        children: <Widget>[
-                        
-                          // 轮播
-                          Container(
-                              margin: EdgeInsets.only(top: 10),
-                              child: this._list.length > 0
-                                  ? SwiperCom(list: this._list)
-                                  : null),
-                          // 横向列表
-                          Container(
-                            
-                            child: horCom()
-                          ),
-                          // 人气歌单
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.95,
-                              margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.width * 0.02,
-                                  top: 10),
-                              child: purple("人气歌单推荐", false, this._purpleList)),
-                          // 温柔岁月的华语情怀
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.95,
-                              margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.width * 0.02,
-                                  top: 10),
-                              child: purple("温柔岁月的华语情怀 ", true, this._purpleList)),
-                          FlatButton(
-                              onPressed: () {
-                                print('object---');
-                              },
-                              child: Icon(Icons.arrow_downward))
-                        ],
+                    margin: EdgeInsets.only(top: 100),
+                      child: Refresh(
+                        widget: SingleChildScrollView(
+                        // key: UniqueKey(),
+                        controller: _controller,
+                        scrollDirection: Axis.vertical,
+                        reverse: false,
+                        physics: BouncingScrollPhysics(),
+                        child: Column(
+                          children: <Widget>[
+                            // 轮播
+                            Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: this._list.length > 0
+                                    ? SwiperCom(list: this._list)
+                                    : null),
+                            // 横向列表
+                            Container(
+                              child: horCom()
+                            ),
+                            // 人气歌单
+                            Container(
+                                width: MediaQuery.of(context).size.width * 0.95,
+                                margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width * 0.02,
+                                    top: 10),
+                                child: purple("人气歌单推荐", false, this._purpleList)),
+                            // 温柔岁月的华语情怀
+                            Container(
+                                width: MediaQuery.of(context).size.width * 0.95,
+                                margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width * 0.02,
+                                    top: 10),
+                                child: purple("温柔岁月的华语情怀 ", true, this._purpleList)),
+                            FlatButton(
+                                onPressed: () {
+                                  print('object---');
+                                },
+                                child: Icon(Icons.arrow_downward))
+                          ],
+                        ),
                       ),
-                    )
+                      ),
                   ),
-
                   Positioned(
                     top: 50,
                     child: Container(

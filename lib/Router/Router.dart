@@ -1,6 +1,8 @@
 
 import 'package:amap_location/amap_location.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_alipay/flutter_alipay.dart';
+import 'package:fluwx/fluwx.dart';
 import 'package:provider/provider.dart';
 import 'package:wangyiyun/Components/Toast.dart';
 import 'package:wangyiyun/Mobx/Counter.dart';
@@ -20,6 +22,8 @@ class Router extends StatefulWidget {
 class _RouterState extends State<Router> {
   int _number = 2;
   int _currentIndex = 0;
+
+  // AlipayResult _alipayResult;
 
   List<Widget> _routes = [ Index(), Video(), My(), Yum(), Setting()];
   
@@ -42,6 +46,21 @@ class _RouterState extends State<Router> {
       
     }
 
+  // 微信sdk注册
+  void _initFluwx() async{
+    // await registerWxApi(
+    //     appId: "wx51322ba32fac382a",
+    //     doOnAndroid: true,
+    //     doOnIOS: true, 
+    //     universalLink: '' );
+    // var result = await isWeChatInstalled;
+    // print("is installed $result");
+  }
+
+  // 支付宝支付
+  void alipay() async{
+    
+  }
 
   Widget getRoute () {
     switch (_currentIndex) {
@@ -63,18 +82,19 @@ class _RouterState extends State<Router> {
   void initState() {
     super.initState();
     this._getLoc(context);
+    // this._initFluwx();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromRGBO(34, 35, 36, 1),
+        // backgroundColor: Colors.red,
         resizeToAvoidBottomPadding: false,
         body: IndexedStack(
           index: _currentIndex,
           children: _routes,
         ) ,
-        
         bottomNavigationBar: BottomNavigationBar(
          selectedItemColor: Colors.red,
          currentIndex: _currentIndex,

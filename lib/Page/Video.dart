@@ -91,7 +91,7 @@ class _VideoState extends State<Video> with TickerProviderStateMixin{
     this.setState(() {
       _list = data['result'];
     });
-    print(data);
+    // print(data);
   }
 
   Future getVideoGroupList() async{

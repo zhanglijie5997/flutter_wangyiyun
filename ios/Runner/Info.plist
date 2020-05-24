@@ -20,6 +20,12 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>iosamap</string>
+		<string>qqmap</string>
+		<string>baidumap</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -57,11 +63,16 @@
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
 
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>iosamap</string>
-		<string>qqmap</string>
-		<string>baidumap</string>
-	</array>
+	<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>org.zoomdev.flutter.alipay</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

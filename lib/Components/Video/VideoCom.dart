@@ -12,7 +12,7 @@ class _VideoComState extends State<VideoCom> {
   @override
   void initState() { 
     super.initState();
-    print(this.widget.item);
+    // print(this.widget.item);
   }
   @override
   Widget build(BuildContext context) {
