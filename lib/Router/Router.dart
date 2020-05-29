@@ -1,5 +1,8 @@
 
+import 'dart:async';
+
 import 'package:amap_location/amap_location.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_alipay/flutter_alipay.dart';
 import 'package:fluwx/fluwx.dart';
@@ -25,6 +28,8 @@ class _RouterState extends State<Router> {
 
   // AlipayResult _alipayResult;
 
+  StreamSubscription<ConnectivityResult> _subscription;
+
   List<Widget> _routes = [ Index(), Video(), My(), Yum(), Setting()];
   
   void _getLoc(BuildContext context) async{
@@ -47,7 +52,7 @@ class _RouterState extends State<Router> {
     }
 
   // 微信sdk注册
-  void _initFluwx() async{
+  Future<void> _initFluwx() async{
     // await registerWxApi(
     //     appId: "wx51322ba32fac382a",
     //     doOnAndroid: true,
@@ -58,8 +63,20 @@ class _RouterState extends State<Router> {
   }
 
   // 支付宝支付
-  void alipay() async{
+  Future<void> alipay() async{
     
+  }
+
+
+
+  // 获取用户网络状态
+  Future<void> getNetWork() async {
+    _subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) { 
+      // 网络状态
+      String _netWordStatus = result == ConnectivityResult.mobile ? '您当前处在2g/3g/4g状态' : 
+                              result == ConnectivityResult.wifi ? '您当前处在wifi环境': '网络无连接';
+      Toast().showText(_netWordStatus);
+     });
   }
 
   Widget getRoute () {
@@ -83,6 +100,13 @@ class _RouterState extends State<Router> {
     super.initState();
     this._getLoc(context);
     // this._initFluwx();
+    this.getNetWork();
+  }
+  
+  @override
+  void dispose() {
+    super.dispose();
+    _subscription.cancel();
   }
 
   @override

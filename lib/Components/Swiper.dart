@@ -41,7 +41,11 @@ class _SwiperComState extends State<SwiperCom> {
                  Container(
                     width: MediaQuery.of(context).size.width * 0.95,
                     height: 200,
-                   child: Image.network(this.widget.list[index]['pic'], fit: BoxFit.fitWidth,),
+                   child: FadeInImage.assetNetwork(
+                     image: this.widget.list[index]['pic'], 
+                     fit: BoxFit.cover,
+                     repeat: ImageRepeat.repeatY,
+                    placeholder: "images/placeholder.png",),
                  ),
                   
                   Positioned(

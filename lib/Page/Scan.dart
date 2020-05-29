@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:wangyiyun/Mobx/Counter.dart';
+import 'package:wangyiyun/Utils/Fluro/Fluro.dart';
 
 class Scan extends StatefulWidget {
   Scan({Key key}) : super(key: key);
@@ -12,21 +15,27 @@ class Scan extends StatefulWidget {
 
 class _ScanState extends State<Scan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  final ValueNotifier<String> qrText = ValueNotifier<String>("");
+  int _popNum = 0;
   QRViewController controller;
-  String qrText = '';
-  void _onQRViewCreated(QRViewController controller) async{
+  // final String qrText = '';
+  void _onQRViewCreated(QRViewController controller,BuildContext context) async{
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      if(qrText.length == 0 ) {
+    controller.scannedDataStream.listen( (scanData) async {
+      if(this.qrText.value.length < 1) {
           print(scanData);
           print("------");
           setState(() {
-              qrText = scanData;
-               Navigator.pop(context,true);
+              this.qrText.value = scanData;
+              controller.pauseCamera();
+
+              Navigator.pop(context, true);
           });
       }
     });
   }
+
+  
 
   // bool _isFlashOn(String current) {
   //   return flashOn == current;
@@ -35,10 +44,15 @@ class _ScanState extends State<Scan> {
   // bool _isBackCamera(String current) {
   //   return backCamera == current;
   // }
+  @override
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   void dispose() {
-    this.controller.dispose();
+    this.controller?.dispose();
     super.dispose();
   }
 
@@ -58,7 +72,9 @@ class _ScanState extends State<Scan> {
                 flex: 4,
                 child: QRView(
                   key: qrKey,
-                  onQRViewCreated: _onQRViewCreated,
+                  onQRViewCreated: (QRViewController _controller) {
+                    this._onQRViewCreated(_controller, context);
+                  } ,
                   overlay: QrScannerOverlayShape(
                     borderColor: Colors.red,
                     borderRadius: 10,

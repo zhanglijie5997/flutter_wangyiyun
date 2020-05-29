@@ -6,7 +6,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 /// 上啦刷新 下啦加载组件
 class Refresh extends StatefulWidget {
   final Widget widget;
-  Refresh({Key key, this.widget}) : super(key: key);
+  final Function addList;
+  Refresh({Key key, this.widget, this.addList}) : super(key: key);
 
   @override
   _RefreshState createState() => _RefreshState();
@@ -17,22 +18,32 @@ class _RefreshState extends State<Refresh> {
   
   void _onRefresh() async{
     // monitor network fetch
+    print(111111);
     await Future.delayed(Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async{
+    this.widget.addList();
     // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
+    // await Future.delayed(Duration(milliseconds: 3000));
     // if failed,use loadFailed(),if no data return,use LoadNodata()
     // items.add((items.length+1).toString());
-    if(mounted)
+    if(mounted) {
+      // print(2222);
+    }
     setState(() {
 
     });
     _refreshController.loadComplete();
   }
+  @override
+  void initState() {
+    super.initState();
+    print("refresh created");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SmartRefresher(
@@ -43,6 +54,7 @@ class _RefreshState extends State<Refresh> {
       onLoading: _onLoading,
       dragStartBehavior: DragStartBehavior.down,
       header: TwoLevelHeader(
+        
         // height: 100,
         refreshingText: "刷新中",
         completeText: "刷新成功",
@@ -63,7 +75,7 @@ class _RefreshState extends State<Refresh> {
       footer: CustomFooter(
         builder: (BuildContext context, LoadStatus mode) {
           print(mode);
-          print("----");
+          // print("----");
           Widget body;
           if (mode == LoadStatus.idle) {
             body = Text("上拉加载");

@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 class Toast {
-  void showText(String title) {
+   void showText(String title) {
     BotToast.showText(
       text: title,
       align: Alignment.center,

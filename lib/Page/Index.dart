@@ -123,7 +123,7 @@ class _IndexState extends State<Index> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(_purpleList[i]['picUrl']))),
+                        image: _purpleList[i]['picUrl'] != null? NetworkImage(_purpleList[i]['picUrl']) : AssetImage("images/placeholder.png") )),
                 child: Container(
                     width: 110,
                     margin: EdgeInsets.only(right: 5, top: 5),
@@ -132,7 +132,7 @@ class _IndexState extends State<Index> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       direction: Axis.horizontal,
                       children: <Widget>[
-                        Image.network(
+                         Image.network(
                           "https://static.ilaisa.com/static/images/ls_shop/shouyegengduo_10.22@3x.png",
                           width: 15,
                           height: 15,
@@ -256,20 +256,7 @@ class _IndexState extends State<Index> {
     
     super.initState();
   }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print("update"); 
-  }
-
-  @override
-  void deactivate() {
-    // update(context);
-    super.deactivate();
-    // print(_controller.offset);
-  }
-
+ 
   @override
   void dispose() {
     super.dispose();
@@ -287,6 +274,10 @@ class _IndexState extends State<Index> {
                   Container(
                     margin: EdgeInsets.only(top: 100),
                       child: Refresh(
+                        addList: () async {
+                          print('上啦加载');
+                          
+                        },
                         widget: SingleChildScrollView(
                         // key: UniqueKey(),
                         controller: _controller,

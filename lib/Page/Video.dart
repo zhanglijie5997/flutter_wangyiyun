@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wangyiyun/Components/Refresh.dart';
 import 'package:wangyiyun/Components/Title.dart';
 import 'package:wangyiyun/Components/Video/Video.dart';
 import 'package:wangyiyun/Components/Video/VideoCom.dart';
@@ -121,15 +122,19 @@ class _VideoState extends State<Video> with TickerProviderStateMixin{
               width: MediaQuery.of(context).size.width * 0.95,
               margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.025),
               padding: EdgeInsets.only(top: 130),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                primary: true,
-                // padding: EdgeInsets.only(top: 10),
-                physics: BouncingScrollPhysics(),
-                itemCount: this._list.length,
-                itemBuilder: (context, i) {
-                  return VideoCom(item: this._list[i]);
-                })
+              child: Refresh(
+                addList: () {},
+                widget: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  primary: true,
+                  // padding: EdgeInsets.only(top: 10),
+                  physics: BouncingScrollPhysics(),
+                  itemCount: this._list.length,
+                  itemBuilder: (context, i) {
+                    return VideoCom(item: this._list[i]);
+                  }
+                ),
+              ) 
             ),
 
             Positioned(

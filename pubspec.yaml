@@ -51,6 +51,12 @@ dependencies:
   # flutter_alipay: ^1.0.0
   # 上啦加载
   pull_to_refresh: ^1.5.8
+  # 检查网络状态
+  connectivity: ^0.4.8+6
+  # 获取缓存
+  path_provider: ^1.6.9
+  # 获取版本号
+  package_info: ^0.4.0+18
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,6 +99,7 @@ flutter:
    - images/seach.png #搜索
    - images/triangle.png #右三角
    - images/equalizer.png #均衡器
+   - images/placeholder.png #均衡器
 
 
 
